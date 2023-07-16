@@ -21,7 +21,6 @@ export const deleteComment = createAsyncThunk(
 export const updateComment = createAsyncThunk(
     'comments/update',
     async (newObj) => {
-        console.log({ newObj })
         await fetch('https://jsonplaceholder.typicode.com/comments/' + newObj.id, { method: 'PUT', body: newObj.newObj })
         return { id: newObj.id, changes: newObj.newObj }
     }
@@ -35,10 +34,10 @@ const commentSlice = createSlice({
     name: 'comments',
     initialState: commentsAdapter.getInitialState({ loading: false }),
     reducers: {
-        setAllComments: commentsAdapter.setAll,
-        setOneComments: commentsAdapter.removeOne,
-        setManyComments: commentsAdapter.addMany,
-        updateOneComment: commentsAdapter.updateOne,
+        // setAllComments: commentsAdapter.setAll,
+        // removeOneComment: commentsAdapter.removeOne,
+        // setManyComments: commentsAdapter.addMany,
+        // updateOneComment: commentsAdapter.updateOne,
     },
     extraReducers: {
         [fetchComments.pending](state) {
@@ -79,12 +78,7 @@ const commentSlice = createSlice({
     },
 })
 
-export const {
-    setAllComments,
-    setOneComments,
-    setManyComments,
-    updateOneComment,
-} = commentSlice.actions
+export const { } = commentSlice.actions
 
 export const commentsSelectors = commentsAdapter.getSelectors(state => state.comments)
 

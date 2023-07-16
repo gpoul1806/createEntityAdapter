@@ -5,14 +5,8 @@ import { commentsSelectors, fetchComments, deleteComment, updateComment } from '
 const Comments = () => {
     const dispatch = useDispatch();
 
-    const { users } = useSelector(state => state);
-    const total = useSelector(commentsSelectors.selectTotal)
     const selectAll = useSelector(commentsSelectors.selectAll)
-    const selectone = useSelector(state => commentsSelectors.selectById(state, 5))
 
-
-
-    console.log({ users: users.entities })
     useEffect(() => {
         dispatch(fetchComments())
     }, [])

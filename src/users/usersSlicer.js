@@ -8,7 +8,6 @@ import { message } from 'antd'
 export const fetchUsers = createAsyncThunk(
     'users/fetch',
     async () => await fetch('https://jsonplaceholder.typicode.com/users?_limit=10').then(res => res.json())
-
 )
 
 export const deleteUser = createAsyncThunk(
@@ -22,7 +21,6 @@ export const deleteUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
     'users/update',
     async (newObj) => {
-        console.log({ newObj })
         await fetch('https://jsonplaceholder.typicode.com/users/' + newObj.id, { method: 'PUT', body: newObj.newObj })
         return { id: newObj.id, changes: newObj.newObj }
     }
@@ -45,9 +43,7 @@ const usersSlice = createSlice({
     initialState: usersAdapter.getInitialState({
         loading: false,
     }),
-    reducers: {
-        getOneUser: usersAdapter.setOne,
-    },
+    reducers: {},
     extraReducers: {
         [fetchUsers.pending](state) {
             state.loading = true
@@ -78,7 +74,7 @@ const usersSlice = createSlice({
         [deleteUser.fulfilled](state, { payload: id }) {
             state.loading = false
             usersAdapter.removeOne(state, id)
-            message.success('User has been updated successfully!')
+            message.success('User has been deleted successfully!')
         },
         [deleteUser.rejected](state) {
             state.loading = false

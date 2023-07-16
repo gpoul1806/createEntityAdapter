@@ -7,10 +7,6 @@ const Users = () => {
 
     const dispatch = useDispatch();
 
-    const { users } = useSelector(state => state);
-
-    console.log({ ldg: users.loading, users })
-
     const total = useSelector(usersSelector.selectAll)
 
     useEffect(() => {
